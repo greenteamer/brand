@@ -1,34 +1,79 @@
 import React from 'react';
-// import Menu from '../containers/Menu.jsx';
-// import Footer from '../containers/Footer.jsx';
+import Menu from '../../containers/Menu.jsx';
+import Footer from '../../containers/Footer.jsx';
 
 export const MainLayout = ({content}) => (
-	<div className="main-layout">
-		<header>
 
-		</header>
-		<div id="wrapper-content">
-			<div id="page-wrapper">
-				<div className="main-content">
-					<div className="content">
-						{content}
+		<div>
+
+			<div id="wrapper" className="main-wrapper ">
+
+				<header id="header" className="awe-menubar-header">
+					<Menu/>
+				</header>
+
+
+
+				<div id="main">
+
+					<div className="main-header background background-image-heading-products">
+						<div className="container">
+							<h1>Products Grid</h1>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div id="back-top"><a href="index.html#top"><i className="fa fa-angle-double-up"></i></a></div>
-		</div>
-		<footer>
-			<div className="bg-dark">
 
 
+					<div id="breadcrumb">
+						<div className="container">
+							<ol className="breadcrumb">
+								<li><a href="products-grid.html#">Home</a>
+								</li>
+								<li className="active"><span>Products Grid</span>
+								</li>
+							</ol>
 
-				<div className="clearfix"></div>
-				<div className="hyperlink">
+						</div>
+					</div>
+
+
 					<div className="container">
-						<div className="pull-left hyper-left"><span>&copy; Создание сайтов</span><span className="name">Evil Monkey.</span></div>
+						<div className="row">
+							<div className="col-md-9 col-md-push-3">
+
+
+							</div>
+
+
+							<div className="col-md-3 col-md-pull-9">
+
+							</div>
+
+						</div>
+
 					</div>
+
+
+
+
+
 				</div>
+
+
+				<footer className="footer">
+					<Footer/>
+
+
+					<a href="products-grid.html#" className="back-top" title="">
+						<span className="back-top-image">
+							<img src="/static/brand/img/back-top.png" alt=""/>
+						</span>
+
+						<small>Back top top</small>
+					</a>
+
+				</footer>
+
+
 			</div>
-		</footer>
-	</div>
+		</div>
 )
