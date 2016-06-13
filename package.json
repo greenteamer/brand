@@ -25,7 +25,8 @@
     "react-wysiwyg-editor": "0.0.7",
     "sanitize-html": "^1.11.3",
     "swipe-js-iso": "^2.0.2",
-    "velocity-react": "^1.1.4"
+    "velocity-react": "^1.1.4",
+    "classnames": "latest"
   },
   "devDependencies": {
     "eslint": "^2.11.1",

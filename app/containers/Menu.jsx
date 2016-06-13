@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-
+import $ from 'jquery';
+import classNames from 'classnames';
+import MenuItems from './MenuItems.jsx';
 
 export default class Menu extends TrackerReact(Component) {
 
   constructor() {
     super();
     this.state = {
-      menu_items: [
+      menuItems: [
         'одежда',
         'обувь',
         'аксессуары',
@@ -23,118 +25,7 @@ export default class Menu extends TrackerReact(Component) {
     this._renderComputation.stop();
   }
 
-  enterItem(e) {
-    e.preventDefault();
-    console.log('menu on enter: ', 'awemenu-active')
-  }
-
-  leaveItem(e) {
-    e.preventDefault();
-    console.log('menu on leave: ', 'leaveItem')
-  }
-
   render() {
-    const items = this.state.menu_items.map((item) => {
-      return(
-        <li
-          key={item}
-          onMouseEnter={this.enterItem}
-          onMouseLeave={this.leaveItem}
-          className="awemenu-item awemenu-has-children awemenu-fadeup">
-            <a href={item} title="">
-                <span>{item}</span>
-            </a>
-
-            <ul className="awemenu-submenu awemenu-megamenu" data-width="100%" data-animation="fadeup">
-                <li className="awemenu-megamenu-item">
-                    <div className="container-fluid">
-                        <div className="awemenu-megamenu-wrapper">
-
-                            <div className="row">
-                                <div className="col-lg-3">
-                                    <h2 className="upper">Clothing</h2>
-
-                                    <ul className="super">
-                                        <li><a href="products-grid.html#" title="">Bestseller</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">New Arrivals</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="col-lg-3">
-                                    <ul className="sublist">
-                                        <li><a href="products-grid.html#" title="">Blazers &amp; Vests</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Graphics Tees</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Jeans</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Jackets &amp; Outerwear</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Pants</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="col-lg-3">
-                                    <ul className="sublist">
-                                        <li><a href="products-grid.html#" title="">Shirts</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Short &amp; Swim</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Tees</a>
-                                        </li>
-                                        <li><a href="products-grid.html#" title="">Underwear &amp; Socks</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="col-lg-3">
-                                    <div className="awe-media inline margin-bottom-25">
-                                        <div className="awe-media-image">
-                                            <a href="products-grid.html#" title="">
-                                                <img src="img/samples/menu/trending-shop.jpg" alt=""/>
-                                            </a>
-                                        </div>
-                                        <h4 className="awe-media-title medium upper center">
-                                        <a href="products-grid.html#" title="">The trend shop</a>
-                                    </h4>
-                                    </div>
-
-                                    <div className="awe-media inline">
-                                        <div className="awe-media-image">
-                                            <a href="products-grid.html#" title="">
-                                                <img src="img/samples/menu/shirt-shop.jpg" alt=""/>
-                                            </a>
-                                            <div className="awe-media-overlay overlay-dark-50 fullpage">
-                                                <div className="fp-table">
-                                                    <div className="fp-table-cell center">
-                                                        <a href="products-grid.html#" className="btn btn-white">Show now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <h4 className="awe-media-title medium upper center">
-                                        <a href="products-grid.html#" title="">Shirt shop</a>
-                                    </h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bottom-link">
-                                <a href="products-grid.html#" className="btn btn-lg btn-dark btn-outline">
-                                    <span>Shop All Clothing</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-      )
-    });
     return (
       <nav className="awemenu-nav awemenu-default awemenu-standard headroom animation headroom--pinned headroom--top" data-responsive-width="1200">
         <div className="container">
@@ -399,9 +290,7 @@ export default class Menu extends TrackerReact(Component) {
               </a>
             </div>
 
-            <ul className="awemenu awemenu-right">
-              {items}
-            </ul>
+            <MenuItems items={this.state.menuItems}/>
 
           </div>
         </div>

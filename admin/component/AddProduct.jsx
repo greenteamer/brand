@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ProductsComponent from '../components/products/Products.jsx';
 
 
-export default class Index extends TrackerReact(Component) {
-
+export default class ProductAdmin extends TrackerReact(Component) {
+	addProduct(e){
+		e.preventDefault()
+		name = e.target.name.value
+		console.log(name)
+		Meteor.call("createProduct")
+	}
 	constructor(){
 		super();
 		this.state = {
@@ -24,23 +27,25 @@ export default class Index extends TrackerReact(Component) {
 		// this.state.subscription.categories.stop(); 
 	}
 
-	render(){
+	render() {
 		const products = Products.find().fetch();
+		const list = products.map( (product, index)=>{
+			return(
+				<li key={index}>
+					{product.name}
+				</li>
+			)
+		});
 		return (
-			<ReactCSSTransitionGroup
-				component="div"
-				transitionName="route"
-				transitionEnterTimeout={600}
-				transitionAppearTimeout={600}
-				transitionLeaveTimeout={400}
-				transitionAppear={true}>
-
-				<h1>Hello</h1>
-				<ProductsComponent 
-					products={products}/>
-
-			</ReactCSSTransitionGroup>
+			<div>
+				<form onSubmit={this.addProduct}>
+					<input type="text" name="name"/>
+					<button className="btn-primary btn" type="submit">Добавить продукт</button>
+				</form>
+				<ul>
+					{list}
+				</ul>
+			</div>
 		)
-
 	}
 }
