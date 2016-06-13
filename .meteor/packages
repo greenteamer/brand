@@ -19,6 +19,14 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 
 check
+aldeed:simple-schema
+aldeed:autoform
+aldeed:collection2
+shinn:autoform-file
+cfs:standard-packages
+cfs:filesystem
+cfs:gridfs
+yasaricli:slugify
 
 
 meteortoys:allthings
@@ -35,4 +43,4 @@ accounts-ui
 accounts-password
 
 
-kadira:flow-router-ssr
+kadira:flow-router
