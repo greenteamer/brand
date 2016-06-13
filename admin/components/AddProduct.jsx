@@ -3,12 +3,6 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 
 export default class ProductAdmin extends TrackerReact(Component) {
-	addProduct(e){
-		e.preventDefault()
-		name = e.target.name.value
-		console.log(name)
-		Meteor.call("createProduct")
-	}
 	constructor(){
 		super();
 		this.state = {
@@ -18,6 +12,12 @@ export default class ProductAdmin extends TrackerReact(Component) {
 				// categories: Meteor.subscribe("categories")
 			}
 		}
+	}
+	addProduct(e){
+		e.preventDefault()
+		name = e.target.name.value
+		console.log(name)
+		Meteor.call("createProduct")
 	}
 
 	componentWillUnmount() {
