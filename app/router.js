@@ -30,7 +30,7 @@ adminSection.route('/', {
 
 
 
-FlowRouter.route('/products/:id/edit', {
+FlowRouter.route('/admin/products/:id/edit', {
 	action(params){
 		mount(MainLayout, {
 			content: <EditProduct _id={params.id} />
