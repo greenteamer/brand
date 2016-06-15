@@ -17,14 +17,14 @@ export default class ProductAdmin extends TrackerReact(Component) {
 		e.preventDefault()
 		name = e.target.name.value
 		console.log(name)
-		Meteor.call("createProduct")
+		Meteor.call("createProduct", name)
 	}
 
 	componentWillUnmount() {
 		this._renderComputation.stop();
-		this.state.subscription.products.stop();  
-		// this.state.subscription.images.stop(); 
-		// this.state.subscription.categories.stop(); 
+		this.state.subscription.products.stop();
+		// this.state.subscription.images.stop();
+		// this.state.subscription.categories.stop();
 	}
 
 	render() {
