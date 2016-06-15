@@ -6,7 +6,7 @@ export default class EditProduct extends TrackerReact(Component) {
 	constructor(){
 		super();
 		this.state = {
-			name: "",
+			name: undefined,
 			subscription: {
 				products: Meteor.subscribe("products"),
 				// images: Meteor.subscribe("images"),
@@ -15,19 +15,6 @@ export default class EditProduct extends TrackerReact(Component) {
 		}
 	}
 
-	componentDidMount() {
-    var promise = new Promise((resolve, reject)=>{
-		 	Products.findOne(this.props._id)
-		});  
-		promise.then(
-			(resolve)=>{
-				console.log('resolve', resolve)
-			}
-			// function(reject){
-			// 	console.log('reject', reject)
-			// }
-		)
-	}
 
 	getProduct(){
 		const product = Products.findOne(this.props._id)
@@ -52,9 +39,9 @@ export default class EditProduct extends TrackerReact(Component) {
 
 	componentWillUnmount() {
 		this._renderComputation.stop();
-		this.state.subscription.products.stop();  
-		// this.state.subscription.images.stop(); 
-		// this.state.subscription.categories.stop(); 
+		this.state.subscription.products.stop();
+		// this.state.subscription.images.stop();
+		// this.state.subscription.categories.stop();
 	}
 
 	render(){
@@ -65,10 +52,10 @@ export default class EditProduct extends TrackerReact(Component) {
 		return(
 			<div>
 				<form onSubmit={this.editProduct.bind(this)}>
-					<input 
-						type="text" 
-						onChange={this.renameProduct.bind(this)} 
-						value={this.state.name} 
+					<input
+						type="text"
+						onChange={this.renameProduct.bind(this)}
+						value={(this.state.name != undefined) ? this.state.name : product.name}
 						name="name" />
 					<button className="btn-primary btn"  type="submit">Сохранить продукт</button>
 				</form>
