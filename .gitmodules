@@ -1,0 +1,3 @@
+[submodule "meteor_react_admin"]
+	path = meteor_react_admin
+	url = ../meteor_react_admin.git

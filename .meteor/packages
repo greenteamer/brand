@@ -27,6 +27,7 @@ cfs:standard-packages
 cfs:filesystem
 cfs:gridfs
 yasaricli:slugify
+alanning:roles
 
 
 meteortoys:allthings
