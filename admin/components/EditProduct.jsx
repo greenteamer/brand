@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+// import Promise from 'promise';
 
 export default class EditProduct extends TrackerReact(Component) {
 	constructor(){
@@ -13,6 +14,21 @@ export default class EditProduct extends TrackerReact(Component) {
 			}
 		}
 	}
+
+	componentDidMount() {
+    var promise = new Promise((resolve, reject)=>{
+		 	Products.findOne(this.props._id)
+		});  
+		promise.then(
+			(resolve)=>{
+				console.log('resolve', resolve)
+			}
+			// function(reject){
+			// 	console.log('reject', reject)
+			// }
+		)
+	}
+
 	getProduct(){
 		const product = Products.findOne(this.props._id)
 		// console.log(product)
@@ -20,19 +36,20 @@ export default class EditProduct extends TrackerReact(Component) {
 	}
 	renameProduct(e){
 		const name = e.target.value
-		Products.update(this.props._id,{
-			$set: {
-				name: name
-			}
-		});
+		this.setState({
+			name: name
+		})
+		// Meteor.call("updateProduct", this.props._id, name)
 		console.log(name)
 	}
 	editProduct(e){
 		e.preventDefault()
 		name = e.target.name.value
+		Meteor.call("updateProduct", this.props._id, name)
 		// console.log(name)
 		// Meteor.call("updateProduct", name)
 	}
+
 	componentWillUnmount() {
 		this._renderComputation.stop();
 		this.state.subscription.products.stop();  
@@ -47,9 +64,13 @@ export default class EditProduct extends TrackerReact(Component) {
 		}
 		return(
 			<div>
-				<form onSubmit={this.editProduct}>
-					<input type="text" onChange={this.renameProduct.bind(this)} value={product.name} name="name" />
-					<button className="btn-primary btn" type="submit">Сохранить продукт</button>
+				<form onSubmit={this.editProduct.bind(this)}>
+					<input 
+						type="text" 
+						onChange={this.renameProduct.bind(this)} 
+						value={this.state.name} 
+						name="name" />
+					<button className="btn-primary btn"  type="submit">Сохранить продукт</button>
 				</form>
 			</div>
 		)
